@@ -1,0 +1,38 @@
+if loc
+    MODEL = [dataset '_' model '_with_location'];
+else
+    MODEL = [dataset '_' model '_binary_only'];
+end
+
+if gist
+    MODEL = [MODEL '_with_gist'];
+else
+    MODEL = [MODEL '_without_gist'];
+end
+
+disp(MODEL)
+
+switch model
+    case 'cltree'
+        load(priorModel)
+    case 'indep'
+        load(priorModelIndep)
+end
+load(measurementModel)
+load(gistPredictions)
+
+disp('loading detector outputs...')
+load(detectorOutputs,'DdetectorTest')     
+        
+disp('loading groundtruth on test set...')        
+load(groundTruth, 'Dtest')         
+
+load(objectCategories) % Load object names and heights        
+[tf, root] = ismember('sky',names); % Root of the tree
+if(~tf)
+    ferror('The root of the tree is not defined\n');
+end
+
+% Show the structure of the tree
+% drawHierarchy(prior_adjmat, names, edge_weight, names, subtrees,0);
+
