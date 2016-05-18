@@ -1,0 +1,22 @@
+Ncategories         Number of known categories (int = 111)
+names               Names of known categories (string x 111)
+heights             Typical heights of object categories (double x 111)
+prior_node_pot      Prior probabilities for categories (double x 111)
+prior_node_pot_g    Prior after taking gist into account (double x 111)
+node_pot            Node potentials, including detections (double x 487 x 2)
+edge_pot            Pairwise clique potentials (double x 974 x 974 sparse)
+
+objects             Names of objects detected in the image (376)
+scores              Scores of objects detected in the image
+
+loc_index           For each detection, which class it refers to (double x 376)
+loc_measurements    Detected centre location y,log(z) (double x 376 x 2)
+loc_img_coords      Detected centre x,y and size in x,y (double x 376 x 4)
+
+mu                  Gaussian means
+Sigma               Gaussian covariance matrix
+J                   information matrix (Sigma^-1)
+h                   potential (J*mu)
+NOTE* these are double the size because they code two variables: Y and logZ
+
+smp                 MAP estimate of binary tree with observations, 2=correct det
